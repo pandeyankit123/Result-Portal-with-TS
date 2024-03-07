@@ -1,0 +1,68 @@
+	.form-box {
+		width: 375px;
+		height: 400px;
+		position: relative;
+		margin: 6% auto;
+		background: #fdfdfd;
+		padding: 5px;
+		overflow: hidden;
+	}
+	.button-box {
+		width: 230px;
+		margin: 35px auto;
+		position: relative;
+		box-shadow: 0 0 20px 9px #ff61241f;
+		border-radius: 30px;
+	}
+	.toggle-btn {
+		padding: 10px 30px;
+		cursor: pointer;
+		background: transparent;
+		border: 0;
+		outline: none;
+		position: relative;
+		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+	}
+	.input-group {
+		top: 125px;
+		position: absolute;
+		width: 280px;
+	}
+	.input-field {
+		width: 100%;
+		padding: 10px 0;
+		margin: 5px 0;
+		border-left: 0;
+		border-top: 0;
+		border-right: 0;
+		border-bottom: 1px solid #150c0c;
+		outline: none;
+		background: transparent;
+	}
+	.submit-btn {
+		width: 85%;
+		padding: 10px 30px;
+		cursor: pointer;
+		display: block;
+		margin:  30px 10px;
+		background: linear-gradient(to right, #ff105f, #ffad06);
+		border-radius: 30px;
+	}
+	#student {
+		left: 50px;
+	}
+	#teacher {
+		left: 50px;
+	}
+	.active {
+		background: linear-gradient(to right, #ff105f, #ffad06);
+		border-radius: 30px;
+		color: #fff;
+	}
+	.an{
+		margin: 0px;
+	}
+
+	.hidden {
+	display: none;
+	}

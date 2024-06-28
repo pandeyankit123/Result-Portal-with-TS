@@ -1,5 +1,7 @@
 # Student Result Portal
 
+https://result-portalrp.vercel.app/
+
 This project implements a Student Result Portal web application designed for managing student records, calculating results, and generating reports. It includes frontend and backend components, with features such as authentication, CRUD operations, and data manipulation.
 
 

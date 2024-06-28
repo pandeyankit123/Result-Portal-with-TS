@@ -34,7 +34,7 @@ The app serves the following functionalities :-
 
 Although I learned quite a lot while trying to build this app, but further improvements are yet to be made:-
 
-1. Adding `Phtotos and Media Files` by a user to the ChatRoom.
+1. Adding `Phtotos and Media Files`.
 
 2. Provision of the `Admin Rights`.
 

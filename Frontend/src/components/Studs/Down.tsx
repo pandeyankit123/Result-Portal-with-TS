@@ -138,21 +138,21 @@ const Down: React.FC<Props> = (props) => {
           <nav aria-label="Page navigation example" >
             <ul className="pagination">
               <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                <a className="page-link" href="#" onClick={handlePrev}>
+                <button className="page-link" onClick={handlePrev}>
                   &laquo;
-                </a>
+                </button>
               </li>
               {Array.from({ length: len }, (_, i) => (
                 <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
-                  <a className="page-link" href="#" onClick={() => paginate(i + 1)}>
+                  <button className="page-link" onClick={() => paginate(i + 1)}>
                     {i + 1}
-                  </a>
+                  </button>
                 </li>
               ))}
               <li className={`page-item ${currentPage === len ? 'disabled' : ''}`}>
-                <a className="page-link" href="#" onClick={handleNext}>
+                <button className="page-link" onClick={handleNext}>
                   &raquo;
-                </a>
+                </button>
               </li>
             </ul>
           </nav>

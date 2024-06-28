@@ -139,7 +139,7 @@ const LoginSignup: React.FC<{ showAlert: (message: string, type: string) => void
         <form onSubmit={handletlogin} id="teacher" className={`input-group ${!isteach ? 'hidden' : ''}`}>
           <input type="text" className="input-field" value={tlog.tlemailorId} onChange={onChangetl} id="tlemailorId" name="tlemailorId" placeholder="Enter Email-id or tid" required />
           <input type="password" className="input-field" value={tlog.tlpassword} onChange={onChangetl} name="tlpassword" id="tlpassword" placeholder="Enter Password" required />
-          <p className='an'>Don't have an account? <a data-toggle="modal" data-target="#exampleModalLong" style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>Sign Up</a></p>
+          <p className='an'>Don't have an account? <button data-toggle="modal" data-target="#exampleModalLong" style={{ cursor: "pointer", color: "blue", textDecoration: "underline", border: "none", backgroundColor:"white" }}>Sign Up</button></p>
           <button type="submit" className="submit-btn" style={{ borderRadius: "30px", margin: "30px auto" }}> Log In </button>
         </form>
 

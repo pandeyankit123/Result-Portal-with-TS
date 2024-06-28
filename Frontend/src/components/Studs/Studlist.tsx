@@ -12,19 +12,19 @@ function Studlist(props: any) {
   const filteredItems = selectedClass
     ? studs.filter((stud: any) => stud.classn === selectedClass)
     : studs;
-
-    const getDistinctClasses = () => {
-      const classes = new Set<string>();
-      studs.forEach((stud: any) => {
-        classes.add(stud.classn);
-      });
-      const sortedClasses = Array.from(classes).sort();
-      return sortedClasses;
-    };
   
     const [distinctClasses, setDistinctClasses] = useState<string[]>([]);
   
     useEffect(() => {
+      const getDistinctClasses = () => {
+        const classes = new Set<string>();
+        studs.forEach((stud: any) => {
+          classes.add(stud.classn);
+        });
+        const sortedClasses = Array.from(classes).sort();
+        return sortedClasses;
+      };
+    
       const classes = getDistinctClasses();
       setDistinctClasses(classes);
     }, [studs]);
@@ -204,12 +204,12 @@ function Studlist(props: any) {
               <th scope="col">D.O.B</th>
               <th scope="col">
                 <div className="dropdown show">
-                  <a className="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" style={{ color: 'black' }} aria-expanded="false"> Class </a>
+                  <button className="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" style={{ color: 'black' , border: "none", backgroundColor:"white"}} aria-expanded="false"> <b>Class</b> </button>
                   <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                       {distinctClasses.map((classn) => (
-                        <a className="dropdown-item" href="#" onClick={() => handleDepartmentFilter(classn)} key={classn}>{classn}</a>
+                        <button className="dropdown-item" onClick={() => handleDepartmentFilter(classn)} key={classn}>{classn}</button>
                       ))}
-                    <a className="dropdown-item" href="#" onClick={() => handleDepartmentFilter('')}> Clear Filter </a>
+                    <button className="dropdown-item" onClick={() => handleDepartmentFilter('')}> Clear Filter </button>
                   </div>
                 </div>
               </th>

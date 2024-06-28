@@ -11,7 +11,12 @@ connectToMongo();
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+const corsOptions = {
+  origin: process.env.BASE_URL,
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 // Available Routes
@@ -20,5 +25,5 @@ app.use('/studs', studentRoutes);
 app.use('/result', resultRoutes)
 
 app.listen(port, () => {
-  console.log(`server listening at http://localhost:${port}`);
+  console.log(`server listening at port: ${port}`);
 });

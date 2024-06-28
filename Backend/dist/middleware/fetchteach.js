@@ -13,7 +13,7 @@ const fetchteach = (req, res, next) => {
         return;
     }
     try {
-        const data = jsonwebtoken_1.default.verify(token, JWT_SECRET); // Assuming 'teach' can be of any type
+        const data = jsonwebtoken_1.default.verify(token, JWT_SECRET);
         req.teach = data.teach;
         next();
     }

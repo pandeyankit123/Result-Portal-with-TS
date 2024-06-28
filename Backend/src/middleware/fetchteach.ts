@@ -19,7 +19,7 @@ const fetchteach = (req: Request, res: Response, next: NextFunction): void => {
         return;
     }
     try {
-        const data = jwt.verify(token, JWT_SECRET) as { teach: any }; // Assuming 'teach' can be of any type
+        const data = jwt.verify(token, JWT_SECRET) as { teach: any };
         req.teach = data.teach;
         next();
     } catch (error) {

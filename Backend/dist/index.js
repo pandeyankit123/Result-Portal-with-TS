@@ -13,7 +13,10 @@ require('dotenv').config();
 (0, db_1.default)();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 5000;
-app.use((0, cors_1.default)());
+const corsOptions = {
+    origin: process.env.BASE_URL,
+};
+app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 // Available Routes
 app.use('/auth', teachAuth_1.default);

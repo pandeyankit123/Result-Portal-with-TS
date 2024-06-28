@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import context from "./context";
+import { toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Student {
   sid: string;
@@ -17,14 +19,14 @@ interface Student {
 }
 
 const State: React.FC<React.PropsWithChildren<{}>> = (props) => {
-  const host = "http://localhost:5000";
+  const host = process.env.REACT_APP_BASE_URL;
 
   const [Student, setStudent] = useState<Student>({} as Student);
 
   const [studs, setStuds] = useState<Student[]>([]);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [itemsPerPage] = useState<number>(7);
+  const [itemsPerPage] = useState<number>(8);
 
   const [len, setlen] = useState<number>(Math.ceil(studs.length / itemsPerPage));
 
@@ -46,17 +48,51 @@ const State: React.FC<React.PropsWithChildren<{}>> = (props) => {
 
   // Add
   const addStud = async (sid: string, name: string, Fname: string, Mname: string, DOB: string, classn: string, mScience: number, mMaths: number, mSST: number, mEnglish: number, mHindi: number, mCoo: number) => {
-    const response = await fetch(`${host}/studs/addstud`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        "auth-token": localStorage.getItem('token') || ''
-      },
-      body: JSON.stringify({ sid, name, Fname, Mname, DOB, classn, mScience, mMaths, mSST, mEnglish, mHindi, mCoo })
-    });
-
-    const stud = await response.json();
-    setStuds(studs.concat(stud));
+    try {
+      const response = await fetch(`${host}/studs/addstud`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'auth-token': localStorage.getItem('token') || ''
+        },
+        body: JSON.stringify({
+          sid, name, Fname, Mname, DOB, classn, mScience, mMaths, mSST, mEnglish, mHindi, mCoo
+        })
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error:', errorData.msg || 'Failed to add student');
+        toast.error(errorData.msg || 'Failed to add student', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+        });
+        return;
+      }
+  
+      const stud = await response.json();
+      setStuds((prevStuds) => prevStuds.concat(stud));
+    } catch (error: any) {
+      console.error('Error:', error.message);
+      toast.error("An error occurred while adding the student", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+    }
   };
 
   // FindById

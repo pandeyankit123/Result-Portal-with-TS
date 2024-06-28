@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useRef, useState, useEffect } from 'react';
 import context from '../../context/context';
 import Item from './Item';
 import moment from 'moment';
@@ -12,6 +12,22 @@ function Studlist(props: any) {
   const filteredItems = selectedClass
     ? studs.filter((stud: any) => stud.classn === selectedClass)
     : studs;
+
+    const getDistinctClasses = () => {
+      const classes = new Set<string>();
+      studs.forEach((stud: any) => {
+        classes.add(stud.classn);
+      });
+      const sortedClasses = Array.from(classes).sort();
+      return sortedClasses;
+    };
+  
+    const [distinctClasses, setDistinctClasses] = useState<string[]>([]);
+  
+    useEffect(() => {
+      const classes = getDistinctClasses();
+      setDistinctClasses(classes);
+    }, [studs]);
 
   const compareFields = (fieldA: string | number, fieldB: string | number) => {
     if (typeof fieldA === 'string') {
@@ -97,41 +113,46 @@ function Studlist(props: any) {
         Launch demo modal
       </button>
       <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">Edit & View Student</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"><i className="fa-solid fa-x"></i></button>
             </div>
             <div className="modal-body">
-              <div className="row">
-                <div className="col">
+            <div className="row g-3">
+                <div className="col-md-6">
                   <label htmlFor="sid" className="form-label">Sid</label>
-                  <input type="text" className="form-control" id="id" name="id" value={Sstud.id} aria-describedby="emailHelp" onChange={onChange} minLength={3} required />
+                  <input type="text" className="form-control" id="id" name="id" value={Sstud.id} disabled />
                 </div>
-                <div className="col">
-                  <label htmlFor="name" className="form-label">Name</label>
-                  <input type="text" className="form-control" id="sname" name="sname" value={Sstud.sname} onChange={onChange} minLength={3} required />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col">
-                  <label htmlFor="Fname" className="form-label">Father's Name</label>
-                  <input type="text" className="form-control" id="sFname" name="sFname" value={Sstud.sFname} onChange={onChange} minLength={3} required />
-                </div>
-                <div className="col">
-                  <label htmlFor="Fname" className="form-label">Mother's Name</label>
-                  <input type="text" className="form-control" id="sMname" name="sMname" value={Sstud.sMname} onChange={onChange} minLength={3} required />
+                <div className="col-md-6" style={{minHeight: "95px"}}>
+                  <label htmlFor="sname" className="form-label">Name</label>
+                  <input type="text" className={`form-control ${Sstud.sname.length < 3 ? 'is-invalid' : 'is-valid'}`} id="sname" name="sname" value={Sstud.sname} onChange={onChange} minLength={3} required style={{backgroundImage: "none"}} />
+                  <small className={`form-text text-muted ${Sstud.sname.length < 3 ? 'd-block' : 'd-none'}`}> Required: minLength 3</small>
                 </div>
               </div>
-              <div className="row ">
-                <div className="col">
-                  <label htmlFor="DOB" className="form-label">D.O.B</label>
-                  <input type="date" className="form-control" id="sDOB" name="sDOB" value={moment(Sstud.sDOB).format('YYYY-MM-DD')} onChange={onChange} />
+              <div className="row g-3">
+                <div className="col-md-6" style={{minHeight: "95px"}}>
+                  <label htmlFor="sFname" className="form-label">Father's Name</label>
+                  <input type="text" className={`form-control ${Sstud.sFname.length < 3 ? 'is-invalid' : 'is-valid'}`} id="sFname" name="sFname" value={Sstud.sFname} onChange={onChange} minLength={3} required style={{backgroundImage: "none"}}/>
+                  <small className={`form-text text-muted ${Sstud.sFname.length < 3 ? 'd-block' : 'd-none'}`}> Required: minLength 3</small>
                 </div>
-                <div className="col">
-                  <label htmlFor="classn" className="form-label">Class</label>
-                  <input type="text" className="form-control" id="sclassn" name="sclassn" value={Sstud.sclassn} onChange={onChange} />
+                <div className="col-md-6" style={{minHeight: "95px"}}>
+                  <label htmlFor="sMname" className="form-label">Mother's Name</label>
+                  <input type="text" className={`form-control ${Sstud.sMname.length < 3 ? 'is-invalid' : 'is-valid'}`} id="sMname" name="sMname" value={Sstud.sMname} onChange={onChange} minLength={3} required style={{backgroundImage: "none"}}/>
+                  <small className={`form-text text-muted ${Sstud.sMname.length < 3 ? 'd-block' : 'd-none'}`}> Required: minLength 3</small>
+                </div>
+              </div>
+              <div className="row g-3">
+                <div className="col-md-6" style={{minHeight: "95px"}}>
+                  <label htmlFor="sDOB" className="form-label">D.O.B</label>
+                  <input type="date" className={`form-control ${Sstud.sDOB.length < 3 ? 'is-invalid' : 'is-valid'}`} id="sDOB" name="sDOB" value={moment(Sstud.sDOB).format('YYYY-MM-DD')} onChange={onChange} required style={{backgroundImage: "none"}}/>
+                  <small className={`form-text text-muted ${Sstud.sDOB.length < 3 ? 'd-block' : 'd-none'}`}> Required</small>
+                </div>
+                <div className="col-md-6" style={{minHeight: "95px"}}>
+                  <label htmlFor="sclassn" className="form-label">Class</label>
+                  <input type="text" className={`form-control ${Sstud.sclassn.length < 3 ? 'is-invalid' : 'is-valid'}`} id="sclassn" name="sclassn" value={Sstud.sclassn} onChange={onChange} minLength={3} required style={{backgroundImage: "none"}}/>
+                  <small className={`form-text text-muted ${Sstud.sclassn.length < 3 ? 'd-block' : 'd-none'}`}> Required: minLength 3</small>
                 </div>
               </div> <br />
               <h4>Marks</h4>
@@ -168,12 +189,13 @@ function Studlist(props: any) {
             </div>
             <div className="modal-footer">
               <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button disabled={Sstud.sname.length < 3} onClick={handleClick} type="button" className="btn btn-primary">Update Student</button>
+              <button disabled={Sstud.sname.length < 3 || Sstud.sFname.length < 3 || Sstud.sMname.length < 3 || Sstud.sDOB.length < 3 || Sstud.sclassn.length < 3} onClick={handleClick} type="button" className="btn btn-primary">Update Student</button>
             </div>
           </div>
         </div>
       </div>
-      <div className="min-vh-70 border border-dark rounded" style={{ minHeight: "49vh" }}>
+      <div className="container-fluid">
+      <div className="min-vh-70 border border-dark rounded" style={{ minHeight: "49vh", overflowX: "auto" }}>
         <table className="table table-hover table-sm" style={{ textAlign: 'center' }}>
           <thead>
             <tr>
@@ -184,6 +206,9 @@ function Studlist(props: any) {
                 <div className="dropdown show">
                   <a className="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" style={{ color: 'black' }} aria-expanded="false"> Class </a>
                   <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      {distinctClasses.map((classn) => (
+                        <a className="dropdown-item" href="#" onClick={() => handleDepartmentFilter(classn)} key={classn}>{classn}</a>
+                      ))}
                     <a className="dropdown-item" href="#" onClick={() => handleDepartmentFilter('')}> Clear Filter </a>
                   </div>
                 </div>
@@ -206,6 +231,7 @@ function Studlist(props: any) {
             })}
           </tbody>
         </table>
+      </div>
       </div>
     </>
   );

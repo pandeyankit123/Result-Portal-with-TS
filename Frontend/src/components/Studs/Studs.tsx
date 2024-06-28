@@ -12,7 +12,7 @@ const Studs: React.FC<Props> = ({ showAlert }) => {
   const { getStuds, currentPage, itemsPerPage } = scontext;
   useEffect(() => {
     getStuds();
-  }, [currentPage, itemsPerPage]);
+  }, [currentPage, itemsPerPage, getStuds]);
 
   return (
     <div className="container">

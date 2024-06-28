@@ -11,7 +11,8 @@ import { useState } from 'react';
 import LoginSignup from './components/loginsignup/LoginSignup';
 import Navbar from './components/Navbar';
 import Studs from './components/Studs/Studs';
-import Result from './components/Result';
+import Result from './components/Result/Result';
+
 
 function App() {
   const [alert, setAlert] = useState<{ msg: string; type: string } | undefined>(undefined);

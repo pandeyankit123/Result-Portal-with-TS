@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+require('dotenv').config();
 
-const uri: string = 'mongodb://127.0.0.1:27017/rp';
+const uri: string = process.env.MONGO_URI!;
 
 const connectToDatabase = async (): Promise<void> => {
   try {

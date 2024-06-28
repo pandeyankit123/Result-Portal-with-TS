@@ -1,25 +1,11 @@
 import React, { useContext, useRef } from 'react';
-import context from '../context/context';
-import sclogo from "../assests/sclogo.png";
-import watermark from '../assests/watermark.JPG';
-import sign from '../assests/sign.jpg';
+import context from '../../context/context';
+import sclogo from "../../assests/sclogo.png";
+import watermark from '../../assests/watermark.JPG';
+import sign from '../../assests/sign.jpg';
 import html2pdf from 'html2pdf.js';
 import moment from 'moment';
-
-interface Student {
-    name: string;
-    sid: string;
-    classn: string;
-    Mname: string;
-    Fname: string;
-    DOB: Date;
-    mScience: number;
-    mMaths: number;
-    mSST: number;
-    mHindi: number;
-    mEnglish: number;
-    mCoo: number;
-}
+import './Result.css'; 
 
 function Result() {
     const scontext = useContext(context);
@@ -70,7 +56,7 @@ function Result() {
             filename: `Result_${Student.name}.pdf`,
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { scale: 2 },
-            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            jsPDF: { unit: 'in', format: 'A4', orientation: 'portrait' }
         };
 
         html2pdf().set(opt).from(cardMain).save();
@@ -79,33 +65,34 @@ function Result() {
 
     return (
         <>
-            <div style={{ minHeight: "950px", margin: "0 375px 50px 375px" }}>
+            <div className="container my-3">
                 <div ref={cardMainRef} className="card" style={{ backgroundRepeat: "round", backgroundImage: `url(${watermark})` }}>
                     <div className="card-body">
-                        <img className='sclogo mt-2' src={sclogo} style={{ display: "block", marginLeft: "auto", marginRight: "auto", filter: "grayscale(100%)", borderBottomLeftRadius: "55px 60px", borderBottomRightRadius: "60px 70px" }} width="100" height="100" alt="" /> <br />
+                        <img className='sclogo mt-2 mx-auto d-block' src={sclogo} style={{borderBottomLeftRadius: "55px 60px", borderBottomRightRadius: "60px 70px" }} alt="" /> <br />
                         <div className='text-center'>
                             <h2>ANKIT PANDEY SCHOOL OF EXCELLENCE</h2>
                             <h4>MARKS STATEMENT CUM CERTIFICATE</h4>
                         </div>
                         <br />
                         <div className='mt-2 mx-4'>
-                            <pre className='my-0'>This is to certify that  <span className='h5'><b>{Student.name}</b></span></pre>
-                            <pre className='my-0'>Student ID (sid)  <span className='h6'>{Student.sid}</span>                               of  Class  <span className='h6'>{Student.classn}</span></pre>
-                            <pre className='my-0'>Mother's Name  <span className='h6'>{Student.Mname}</span></pre>
-                            <pre className='my-0'>Father's Name  <span className='h6'>{Student.Fname}</span></pre>
-                            <pre className='my-0'>Date of Birth  <span className='h6'>{moment(Student.DOB).format('dddd, Do MMMM YYYY')}</span></pre>
+                            <p className='my-0'>This is to certify that &nbsp;&nbsp; <br className="brbrbr"/> <span className='h5 b'>{Student.name}</span></p>
+                            <p className='my-0'>Student ID (sid) &nbsp;&nbsp; <span className='cls h6'>{Student.sid}</span> of <br className="brbr"/>  Class  <span className='h6'>{Student.classn}</span></p>
+                            <p className='my-0'>Mother's Name  &nbsp;&nbsp; <br className="brbr"/> <span className='h6 pdd'>{Student.Mname}</span></p>
+                            <p className='my-0'>Father's Name  &nbsp;&nbsp; <br className="brbr"/> <span className='h6 pdd'>{Student.Fname}</span></p>
+                            <p className='my-0'>Date of Birth  &nbsp;&nbsp; <br className="brbrbr"/> <span className='h6'>{moment(Student.DOB).format('dddd, Do MMMM YYYY')}</span></p> 
                             <br />
                             <p>has achieved Scholastic Achievements as under:</p>
-                            <table className='table-sm table-bordered' style={{ width: "100%" }}>
+                            <div className="table-responsive">
+                            <table className='table table-sm table-bordered'>
                                 <tr>
-                                    <th rowSpan={2}> S. code</th>
-                                    <th rowSpan={2}> Subject</th>
-                                    <th colSpan={2}> Marks Obtained (Out of 100)</th>
-                                    <th rowSpan={2}> Grades</th>
+                                    <th className='align-middle' rowSpan={2}> S. code</th>
+                                    <th className='align-middle' rowSpan={2}> Subject</th>
+                                    <th className='align-middle' colSpan={2}> Marks Obtained (Out of 100)</th>
+                                    <th className='align-middle' rowSpan={2}> Grades</th>
                                 </tr>
                                 <tr>
-                                    <th>Marks</th>
-                                    <th>In words</th>
+                                    <th className='align-middle' >Marks</th>
+                                    <th className='align-middle' >In words</th>
                                 </tr>
                                 <tr>
                                     <td>001</td>
@@ -150,6 +137,7 @@ function Result() {
                                     <td>{convertToGrades(Student.mCoo)}</td>
                                 </tr>
                             </table>
+                            </div>
                             <br /><br />
                             <div className='row justify-content-sm-between px-3'>
                                 <div>
@@ -158,8 +146,8 @@ function Result() {
                                     <br /><br />
                                     <pre>Dated:  {moment().format('DD/MM/YY')}</pre>
                                 </div>
-                                <div style={{}}>
-                                    <img src={sign} width="120" height="60" style={{ display: "block", marginLeft: "auto", marginRight: "auto", transform: "rotate(-20deg)", borderTopRightRadius: "120px 50px", borderBottomLeftRadius: "80px 50px", marginTop: "55px", filter: "contrast(200%)" }} alt="" />
+                                <div>
+                                    <img src={sign} className="sign-img mx-auto d-block"  style={{ transform: "rotate(-20deg)", borderTopRightRadius: "120px 50px", borderBottomLeftRadius: "80px 50px", marginTop: "55px", filter: "contrast(200%)" }} alt="" />
                                     <p>Controller of Examinations</p>
                                 </div>
                             </div>
@@ -167,7 +155,7 @@ function Result() {
                     </div>
                 </div>
             </div>
-            <button className='btn btn-secondary ' onClick={downloadPDF} style={{ width: "180px", borderRadius: "30px", display: "block", marginLeft: "auto", marginRight: "auto" }}>Download PDF</button>
+            <button className='btn btn-primary mx-auto d-block' onClick={downloadPDF} style={{ width: "180px", borderRadius: "30px"}}>Download PDF</button>
             <br />
         </>
     )

@@ -20,7 +20,9 @@ router.post('/addstud', fetchteach, async (req: Request, res: Response) => {
     try {
         const checkid = await Student.findOne({ sid: req.body.sid });
         if (checkid) {
-            res.status(400).send("Student already exists");
+            if (checkid.teach !== req.teach.tid) {
+                return res.status(400).send({msg: "Student is allready enrolled with another teacher"});
+            } else return res.status(400).send({msg: "Student allready exist with this teacher"});
         } else {
             const newstud = new Student({ ...req.body, teach: req.teach.tid });
             const savedstud = await newstud.save();

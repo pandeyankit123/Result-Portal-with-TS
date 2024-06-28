@@ -30,6 +30,8 @@ const LoginSignup: React.FC<{ showAlert: (message: string, type: string) => void
   const [tsign, settsign] = useState<TeacherSignup>({ tsid: "", tsname: "", tsemail: "", tspassword: "", cpassword: "" });
   let navigate = useNavigate();
 
+  const host = process.env.REACT_APP_BASE_URL;
+
   const handleToggle = (s: string) => {
     if (s === "student" && isteach) {
       setisteach(!isteach);
@@ -41,7 +43,7 @@ const LoginSignup: React.FC<{ showAlert: (message: string, type: string) => void
   const handleres = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/result/getStudentResult', {
+      const response = await fetch(`${host}/result/getStudentResult`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -59,7 +61,7 @@ const LoginSignup: React.FC<{ showAlert: (message: string, type: string) => void
   
   const handletlogin = async (e: FormEvent) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/auth/login", {
+    const response = await fetch(`${host}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -86,7 +88,7 @@ const LoginSignup: React.FC<{ showAlert: (message: string, type: string) => void
     }
 
     if (tsign.tspassword === tsign.cpassword) {
-      const response = await fetch("http://localhost:5000/auth/createteach", {
+      const response = await fetch(`${host}/auth/createteach`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

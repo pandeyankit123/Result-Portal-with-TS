@@ -10,7 +10,7 @@ interface TeacherDetails {
 }
 
 const Navbar: React.FC<{ showAlert: (message: string, type: string) => void }> = (props) => {
-  const host = "http://localhost:5000";
+  const host = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
   const [teacherDetails, setTeacherDetails] = useState<TeacherDetails>({ tid: "", name: "", email: "" });
 
@@ -39,7 +39,7 @@ const Navbar: React.FC<{ showAlert: (message: string, type: string) => void }> =
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark" >
       <div className="container-fluid" >
-        <Link className="navbar-brand" to="#"><img src={logo} style={{ borderRadius: "30px" }} alt="" width="30" height="30" className="mx-2 d-inline-block align-text-top" />Result Portal</Link>
+        <Link className="navbar-brand" to="/"><img src={logo} style={{ borderRadius: "30px" }} alt="" width="30" height="30" className="mx-2 d-inline-block align-text-top" />Result Portal</Link>
         <div className="justify-content-end">
           {!localStorage.getItem('token') ? <form></form> :
             <div>

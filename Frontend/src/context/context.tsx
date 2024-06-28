@@ -1,4 +1,4 @@
-import { createContext, Context, ReactNode } from "react";
+import { createContext, Context } from "react";
 
 interface Student {
   sid: string;

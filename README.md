@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# Student Result Portal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project implements a Student Result Portal web application designed for managing student records, calculating results, and generating reports. It includes frontend and backend components, with features such as authentication, CRUD operations, and data manipulation.
 
-## Available Scripts
 
-In the project directory, you can run:
+Technologies Used:
 
-### `npm start`
+2. `Frontend`: React.js, Bootstrap
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. `Backend`: Node.js, Express.js, MongoDB (Atlas), Mongoose
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+3. `Authentication`: JSON Web Tokens (JWT), bcrypt.js, express-validator
 
-### `npm test`
+4. `Data Manipulation`: XLSX.js for Excel import/export
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+5. `Deployment`: Vercel (frontend), Render (backend), Atlas (database hosting)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The app serves the following functionalities :-
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. `Authentication`: Secure login and token-based authentication using JWT.
 
-### `npm run eject`
+2. `Student Management`: CRUD operations for managing student records.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. `Result`: Automated calculation of student results based on subject scores and `download customized PDF format`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. `Export/Import`: Export student data to Excel files and import data from Excel.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+5. `Responsive Design`: User-friendly interface designed to work seamlessly on desktop and mobile devices.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+Although I learned quite a lot while trying to build this app, but further improvements are yet to be made:-
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Adding `Phtotos and Media Files` by a user to the ChatRoom.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Provision of the `Admin Rights`.
+
+
+## This is the landing-page for both teachers and student.
+<img src="Screenshots/rp1.png">
+
+
+## Result page form where you can download the PDF.
+<img src="Screenshots/rp2.png">
+
+
+## Dashboard loaded with functionalities.
+<img src="Screenshots/rp3.png">
+
+## Clean UI with Modals and no redirect.
+<img src="Screenshots/rp4.png">

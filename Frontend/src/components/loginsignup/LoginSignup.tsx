@@ -132,7 +132,7 @@ const LoginSignup: React.FC<{ showAlert: (message: string, type: string) => void
 
         <form onSubmit={handleres} id="student" className={`input-group ${isteach ? 'hidden' : ''}`}>
           <input type="text" className="input-field" value={sres.rsid} onChange={onChanger} name="rsid"  placeholder="Student Id (sid)" required />
-          <input type="text" className="input-field" value={sres.rMname} onChange={onChanger} name="rMname"  placeholder="Mother's name" required />
+          <input type="text" className="input-field" value={sres.rMname} onChange={onChanger} name="rMname"  placeholder="Mother's name" required /><p className='text-muted' style={{ margin: "auto" }}>For Demo: s1001, Soni Pandey</p>
           <button type="submit" className="submit-btn" style={{ borderRadius: "30px", margin: "30px auto" }}> Get Result </button>
         </form>
 
@@ -140,7 +140,8 @@ const LoginSignup: React.FC<{ showAlert: (message: string, type: string) => void
           <input type="text" className="input-field" value={tlog.tlemailorId} onChange={onChangetl} id="tlemailorId" name="tlemailorId" placeholder="Enter Email-id or tid" required />
           <input type="password" className="input-field" value={tlog.tlpassword} onChange={onChangetl} name="tlpassword" id="tlpassword" placeholder="Enter Password" required />
           <p className='an'>Don't have an account? <button data-toggle="modal" data-target="#exampleModalLong" style={{ cursor: "pointer", color: "blue", textDecoration: "underline", border: "none", backgroundColor:"white" }}>Sign Up</button></p>
-          <button type="submit" className="submit-btn" style={{ borderRadius: "30px", margin: "30px auto" }}> Log In </button>
+          <p className='text-muted' style={{ margin: "auto" }}>For Demo: t123, inder</p>
+          <button type="submit" className="submit-btn" style={{ borderRadius: "30px", margin: "20px auto" }}> Log In </button>
         </form>
 
         <div className="modal fade" id="exampleModalLong" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
